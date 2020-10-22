@@ -28,6 +28,12 @@ object List {
     case Cons(_, xs) => xs
   }
 
+  // Exercise 3.3
+  def changeHead[A](vals: List[A], elem: A): List[A] = vals match {
+    case Nil => throw new Exception("Empty list")
+    case Cons(_, xs) => Cons(elem, xs)
+  }
+
   def addAtFront[A](vals: List[A], elem: A) = Cons(elem, vals)
 }
 
