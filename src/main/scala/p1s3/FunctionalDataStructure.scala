@@ -31,6 +31,11 @@ object List {
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
 
+  def getHead[A](l: List[A]): A = l match {
+    case Nil => throw new Exception("Empty list")
+    case Cons(x, _) => x
+  }
+
   // Exercise 3.2
   def removeFirst[A](vals: List[A]): List[A] = vals match {
     case Nil => throw new Exception("Empty list")
@@ -94,6 +99,7 @@ object List {
   def init[A](l: List[A]): List[A] = {
     def loop(l1: List[A]): List[A] = {
       l1 match {
+        case Nil => Nil
         case Cons(_, Nil) => Nil
         case Cons(x, yx) => Cons(x, loop(yx))
       }
