@@ -65,4 +65,42 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
       List.getHead(l1)
     }.getMessage.isEmpty)
   }
+
+  test("Length of list") {
+    assertEquals(4, List.len(List(1, 2, 3, 4)))
+    assertEquals(0, List.len(List()))
+    assertEquals(1, List.len(List(Int.MaxValue)))
+  }
+
+  test("Change Head - Exercise 3.3") {
+    var l1 = List(1, 2, 3, 4)
+    assertEquals(1, List.getHead(l1))
+    // Length remains unchanged
+    assertEquals(4, List.len(l1))
+
+    l1 = List.changeHead(l1, 20)
+    assertEquals(20, List.getHead(l1))
+    assertEquals(4, List.len(l1))
+
+    l1 = List.changeHead(l1, 0)
+    assertEquals(0, List.getHead(l1))
+    assertEquals(4, List.len(l1))
+
+  }
+
+  test("Add at front") {
+    var l1 = List(1, 2, 3, 4)
+    assertEquals(1, List.getHead(l1))
+    // Length changes (increases)
+    assertEquals(4, List.len(l1))
+
+    l1 = List.addAtFront(l1, 20)
+    assertEquals(20, List.getHead(l1))
+    assertEquals(5, List.len(l1))
+
+    l1 = List.addAtFront(l1, 0)
+    assertEquals(0, List.getHead(l1))
+    assertEquals(6, List.len(l1))
+
+  }
 }

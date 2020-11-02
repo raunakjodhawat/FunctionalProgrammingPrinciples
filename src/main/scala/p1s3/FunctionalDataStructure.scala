@@ -50,6 +50,16 @@ object List {
 
   def addAtFront[A](vals: List[A], elem: A) = Cons(elem, vals)
 
+  // returns length of list
+  def len[A](l: List[A]) = {
+    def loop(l1: List[A], acc: Int): Int = {
+      l1 match {
+        case Nil => acc
+        case Cons(_, xs) => loop(xs, acc + 1)
+      }
+    }
+    loop(l, 0)
+  }
   // Exercise 3.4
   def drop[A](l:List[A], n: Int): List[A] = {
     def loop(i: Int, l1: List[A]): List[A] = {
