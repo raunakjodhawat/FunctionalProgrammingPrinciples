@@ -20,6 +20,13 @@ object List {
     case Cons(x, xs) => x * product(xs)
   }
 
+  def foldRight[A](l: List[A], z: A)(f: (A, A) => A): A = {
+    l match {
+      case Nil => z
+      case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+    }
+  }
+
   def apply[A](as: A*): List[A] =
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
@@ -57,11 +64,38 @@ object List {
           else Cons(x, xs)
       }
     }
-
     def loop(l1: List[A]): List[A] = {
       l1 match {
         case Nil => l1
         case Cons(x, xs) => individualChecker(Cons(x, loop(xs)))
+      }
+    }
+    loop(l)
+  }
+
+    // Exercise 3.5, alternate solution
+    def dropWhileAlternate[A](l: List[A])(f: A => Boolean): List[A] = {
+      l match {
+        case Cons(x, xs) if f(x) => dropWhileAlternate(xs)(f)
+        case _ => l
+      }
+    }
+
+
+
+  def append[A](l1: List[A], l2: List[A]): List[A] = {
+    l1 match {
+      case Nil => l2
+      case Cons(x, xs) => Cons(x, append(xs, l2))
+    }
+  }
+
+  // Exercise 3.6
+  def init[A](l: List[A]): List[A] = {
+    def loop(l1: List[A]): List[A] = {
+      l1 match {
+        case Cons(_, Nil) => Nil
+        case Cons(x, yx) => Cons(x, loop(yx))
       }
     }
     loop(l)
@@ -99,6 +133,18 @@ object FunctionalDataStructure {
     println(l5)
     val l6 = List.dropWhile(l5, (a: Int) => a%5 == 0)
     println(l6)
+
+    val l7 = List.append(l5, l6)
+    println(l7)
+
+    val l8 = List.init(l7)
+    println(l8)
+
+    val l9 = List.dropWhile(l6, (a: Int) => a%5 == 0)
+    val l10 = List.dropWhileAlternate(l6)(a => a%5 == 0)
+
+    println(l9)
+    println(l10)
     println("all done")
   }
 }
