@@ -146,5 +146,13 @@ object FunctionalDataStructure {
     println(l9)
     println(l10)
     println("all done")
+
+
+    val l11 = List(1, 3, 5)
+    println(List.foldRight(l11, 0)((a, b) => a + b))
+    println(List.foldRight(l11, 1)((a, b) => a * b))
+
+    println(List.foldRight(l11, 0)(_ + _))
+    println(List.foldRight(l11, 1)(_ * _))
   }
 }
