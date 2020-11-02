@@ -101,7 +101,6 @@ object List {
     }
   }
 
-
   def append[A](l1: List[A], l2: List[A]): List[A] = {
     l1 match {
       case Nil => l2
@@ -109,7 +108,13 @@ object List {
     }
   }
 
-  // Exercise 3.6
+  def getTail[A](l: List[A]): A = l match {
+    case Nil => throw new Exception("Empty List")
+    case Cons(x, Nil) => x
+    case Cons(_, xs) => getTail(xs)
+  }
+
+  // Exercise 3.6: Remove tail element
   def init[A](l: List[A]): List[A] = {
     def loop(l1: List[A]): List[A] = {
       l1 match {

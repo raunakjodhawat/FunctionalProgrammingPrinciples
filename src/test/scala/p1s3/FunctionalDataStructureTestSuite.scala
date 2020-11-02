@@ -128,7 +128,7 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(4, List.len(l1))
 
     // Drop even elements from list
-    l1 = List.dropWhile(l1, (a: Int) => a%2==0)
+    l1 = List.dropWhile(l1, (a: Int) => a % 2 == 0)
 
     assertEquals(1, List.getHead(l1))
     assertEquals(2, List.len(l1))
@@ -142,7 +142,7 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(4, List.len(l1))
 
     // Drop first two elements from list
-    l1 = List.dropWhileContinousMismatch(l1)(a => a%2==0)
+    l1 = List.dropWhileContinousMismatch(l1)(a => a % 2 == 0)
 
     assertEquals(3, List.getHead(l1))
     assertEquals(2, List.len(l1))
@@ -162,4 +162,38 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(1, List.getHead(l5))
 
   }
+
+  test("Get Tail") {
+    assertEquals(4, List.getTail(List(1, 2, 3, 4)))
+
+    // There should be an exception when list is empty
+    assert(!intercept[Exception] {
+      List.getHead(List())
+    }.getMessage.isEmpty)
+  }
+
+  test("Remove tail element - Exercise 3.6") {
+    var l1 = List(1, 2, 3, 4)
+
+    assertEquals(4, List.getTail(l1))
+    assertEquals(4, List.len(l1))
+
+    l1 = List.init(l1)
+    assertEquals(3, List.getTail(l1))
+    assertEquals(3, List.len(l1))
+
+    l1 = List.init(l1)
+    assertEquals(2, List.getTail(l1))
+    assertEquals(2, List.len(l1))
+
+    l1 = List.init(l1)
+    assertEquals(1, List.getTail(l1))
+    assertEquals(1, List.len(l1))
+
+    l1 = List.init(l1)
+    assert(!intercept[Exception] {
+      List.getTail(l1)
+    }.getMessage.isEmpty)
+  }
+
 }
