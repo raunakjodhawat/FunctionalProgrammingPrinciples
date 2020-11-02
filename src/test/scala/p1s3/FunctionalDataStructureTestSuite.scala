@@ -196,4 +196,10 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     }.getMessage.isEmpty)
   }
 
+  test("Find Length using fold Right, exercise 3.10") {
+    assertEquals(4, List.LenUsingFoldRight(List(1,2,3,4)))
+    assertEquals(0, List.LenUsingFoldRight(List()))
+    assertEquals(1, List.LenUsingFoldRight(List(0)))
+  }
+
 }

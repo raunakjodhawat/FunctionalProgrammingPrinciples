@@ -133,6 +133,9 @@ object List {
     loop(l)
   }
 
+  // Exercise 3.9 find length of list
+  def LenUsingFoldRight(l: List[Int]): Int = foldRight(l, 0)((_, b) => b + 1)
+
 }
 
 object FunctionalDataStructure {
@@ -180,11 +183,17 @@ object FunctionalDataStructure {
     println("all done")
 
 
-    val l11 = List(1, 3, 5)
+    val l11 = List(1, 3, 5, 11, 23)
     println(List.foldRight(l11, 0)((a, b) => a + b))
-    println(List.foldRight(l11, 1)((a, b) => a * b))
+    // Exercise 3.7 (Will not work)
+    println(List.foldRight(l11, 1)((a, b) => if (a == 0 | b == 0) 0 else a * b))
 
     println(List.foldRight(l11, 0)(_ + _))
     println(List.foldRight(l11, 1)(_ * _))
+
+    println(l11)
+
+    println(List.LenUsingFoldRight(l11))
   }
+
 }
