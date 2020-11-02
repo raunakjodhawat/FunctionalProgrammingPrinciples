@@ -1,5 +1,7 @@
 package p1s3
 
+import scala.annotation.tailrec
+
 
 sealed trait List[+A]
 
@@ -48,10 +50,11 @@ object List {
     case Cons(_, xs) => Cons(elem, xs)
   }
 
-  def addAtFront[A](vals: List[A], elem: A) = Cons(elem, vals)
+  def addAtFront[A](vals: List[A], elem: A): Cons[A] = Cons(elem, vals)
 
   // returns length of list
-  def len[A](l: List[A]) = {
+  def len[A](l: List[A]): Int = {
+    @tailrec
     def loop(l1: List[A], acc: Int): Int = {
       l1 match {
         case Nil => acc
@@ -64,6 +67,7 @@ object List {
 
   // Exercise 3.4
   def drop[A](l: List[A], n: Int): List[A] = {
+    @tailrec
     def loop(i: Int, l1: List[A]): List[A] = {
       if (i == n) l1
       else loop(i + 1, removeFirst(l1))
@@ -94,6 +98,7 @@ object List {
   }
 
   // Drop until the condition meets
+  @tailrec
   def dropWhileContinousMismatch[A](l: List[A])(f: A => Boolean): List[A] = {
     l match {
       case Cons(x, xs) if f(x) => dropWhileContinousMismatch(xs)(f)
@@ -108,6 +113,7 @@ object List {
     }
   }
 
+  @tailrec
   def getTail[A](l: List[A]): A = l match {
     case Nil => throw new Exception("Empty List")
     case Cons(x, Nil) => x

@@ -14,7 +14,8 @@ To Execute, there's one Tester Object class with Main method in each package, th
     Currying
     
 #### P1s3
-    Functional Data Structure
+    Functional Data Structure (List)
+    
 
 
 ### Tests
