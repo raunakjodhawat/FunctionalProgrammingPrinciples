@@ -21,7 +21,7 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
   }
 
   test("Fold Right") {
-    alert("Find List Sum")
+    note("Find List Sum")
     assertEquals(10, List.foldRight(List(1, 2, 3, 4), 0)(_ + _))
     assertEquals(0, List.foldRight(List(), 0)(_ + _))
     assertEquals(-10, List.foldRight(List(-1, -2, -3, -4), 0)(_ + _))
@@ -29,7 +29,7 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(Int.MaxValue, List.foldRight(List(Int.MaxValue), 0)(_ + _))
 
 
-    alert("Find List Product")
+    note("Find List Product")
     assertEquals(24, List.foldRight(List(1, 2, 3, 4), 1)(_ * _))
     assertEquals(1, List.foldRight(List(), 1)(_ * _))
     assertEquals(24, List.foldRight(List(-1, -2, -3, -4), 1)(_ * _))
@@ -101,6 +101,65 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     l1 = List.addAtFront(l1, 0)
     assertEquals(0, List.getHead(l1))
     assertEquals(6, List.len(l1))
+
+  }
+
+  test("drop N") {
+    var l1 = List(1, 2, 3, 4)
+
+    assertEquals(1, List.getHead(l1))
+    assertEquals(4, List.len(l1))
+
+    l1 = List.drop(l1, 2)
+
+    assertEquals(3, List.getHead(l1))
+    assertEquals(2, List.len(l1))
+
+    assert(!intercept[Exception] {
+      List.drop(l1, 3)
+    }.getMessage.isEmpty)
+
+  }
+
+  test("Drop While") {
+    var l1 = List(1, 2, 3, 4)
+
+    assertEquals(1, List.getHead(l1))
+    assertEquals(4, List.len(l1))
+
+    // Drop even elements from list
+    l1 = List.dropWhile(l1, (a: Int) => a%2==0)
+
+    assertEquals(1, List.getHead(l1))
+    assertEquals(2, List.len(l1))
+
+  }
+
+  test("Drop While First mismatch condition") {
+    var l1 = List(2, 2, 3, 4)
+
+    assertEquals(2, List.getHead(l1))
+    assertEquals(4, List.len(l1))
+
+    // Drop first two elements from list
+    l1 = List.dropWhileContinousMismatch(l1)(a => a%2==0)
+
+    assertEquals(3, List.getHead(l1))
+    assertEquals(2, List.len(l1))
+  }
+
+  test("Append two list") {
+    val l1 = List(1, 2, 3, 4)
+    val l2 = List(5, 6, 7, 8)
+
+    val l3 = List.append(l1, l2)
+    val l4 = List.append(l2, l1)
+    val l5 = List.append(l1, l1)
+
+    assertEquals(true, List.len(l3) == List.len(l4) && List.len(l3) == List.len(l5))
+    assertEquals(1, List.getHead(l3))
+    assertEquals(5, List.getHead(l4))
+    assertEquals(1, List.getHead(l5))
 
   }
 }

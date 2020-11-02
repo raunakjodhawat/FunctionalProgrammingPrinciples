@@ -58,14 +58,17 @@ object List {
         case Cons(_, xs) => loop(xs, acc + 1)
       }
     }
+
     loop(l, 0)
   }
+
   // Exercise 3.4
-  def drop[A](l:List[A], n: Int): List[A] = {
+  def drop[A](l: List[A], n: Int): List[A] = {
     def loop(i: Int, l1: List[A]): List[A] = {
-      if(i==n) l1
-      else loop(i+1, removeFirst(l1))
+      if (i == n) l1
+      else loop(i + 1, removeFirst(l1))
     }
+
     loop(0, l)
   }
 
@@ -75,27 +78,28 @@ object List {
       l1 match {
         case Nil => l1
         case Cons(x, xs) =>
-          if(f(x)) xs
+          if (f(x)) xs
           else Cons(x, xs)
       }
     }
+
     def loop(l1: List[A]): List[A] = {
       l1 match {
         case Nil => l1
         case Cons(x, xs) => individualChecker(Cons(x, loop(xs)))
       }
     }
+
     loop(l)
   }
 
-    // Exercise 3.5, alternate solution
-    def dropWhileAlternate[A](l: List[A])(f: A => Boolean): List[A] = {
-      l match {
-        case Cons(x, xs) if f(x) => dropWhileAlternate(xs)(f)
-        case _ => l
-      }
+  // Drop until the condition meets
+  def dropWhileContinousMismatch[A](l: List[A])(f: A => Boolean): List[A] = {
+    l match {
+      case Cons(x, xs) if f(x) => dropWhileContinousMismatch(xs)(f)
+      case _ => l
     }
-
+  }
 
 
   def append[A](l1: List[A], l2: List[A]): List[A] = {
@@ -114,6 +118,7 @@ object List {
         case Cons(x, yx) => Cons(x, loop(yx))
       }
     }
+
     loop(l)
   }
 
@@ -133,7 +138,7 @@ object FunctionalDataStructure {
 
     println(l3)
     println(l2)
-    
+
     val l4 = List.addAtFront(l3, 100)
 
     println(l4)
@@ -147,7 +152,7 @@ object FunctionalDataStructure {
     val l5 = List(10, 12, 15, 20, 22, 32, 42, 52, 60)
 
     println(l5)
-    val l6 = List.dropWhile(l5, (a: Int) => a%5 == 0)
+    val l6 = List.dropWhile(l5, (a: Int) => a % 5 == 0)
     println(l6)
 
     val l7 = List.append(l5, l6)
@@ -156,8 +161,8 @@ object FunctionalDataStructure {
     val l8 = List.init(l7)
     println(l8)
 
-    val l9 = List.dropWhile(l6, (a: Int) => a%5 == 0)
-    val l10 = List.dropWhileAlternate(l6)(a => a%5 == 0)
+    val l9 = List.dropWhile(l6, (a: Int) => a % 5 == 0)
+    val l10 = List.dropWhileContinousMismatch(l6)(a => a % 5 == 0)
 
     println(l9)
     println(l10)
