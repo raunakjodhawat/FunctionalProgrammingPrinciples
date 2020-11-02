@@ -136,6 +136,17 @@ object List {
   // Exercise 3.9 find length of list
   def LenUsingFoldRight(l: List[Int]): Int = foldRight(l, 0)((_, b) => b + 1)
 
+  // Exercise 3.10 foldRight using tail recursion
+  def foldLeft[A, B](as: List[A], z: B)(f: (B, A) => B): B = {
+    @tailrec
+    def loop(l: List[A], acc: B): B = {
+      l match {
+        case Nil => acc
+        case Cons(x, xs) => loop(xs, f(acc, x))
+      }
+    }
+    loop(as, z)
+  }
 }
 
 object FunctionalDataStructure {

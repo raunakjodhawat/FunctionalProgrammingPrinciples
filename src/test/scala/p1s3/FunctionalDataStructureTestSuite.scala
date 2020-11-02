@@ -202,4 +202,20 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(1, List.LenUsingFoldRight(List(0)))
   }
 
+  test("Fold Left") {
+    note("Find List Sum")
+    assertEquals(10, List.foldLeft(List(1, 2, 3, 4), 0)(_ + _))
+    assertEquals(-10, List.foldLeft(List(-1, -2, -3, -4), 0)(_ + _))
+    assertEquals(4, List.foldLeft(List(-1, -2, 3, 4), 0)(_ + _))
+    assertEquals(Int.MaxValue, List.foldLeft(List(Int.MaxValue), 0)(_ + _))
+
+
+    note("Find List Product")
+    assertEquals(24, List.foldLeft(List(1, 2, 3, 4), 1)(_ * _))
+    assertEquals(24, List.foldLeft(List(-1, -2, -3, -4), 1)(_ * _))
+    assertEquals(-24, List.foldLeft(List(1, -2, 3, 4), 1)(_ * _))
+    assertEquals(Int.MaxValue, List.foldLeft(List(Int.MaxValue), 1)(_ * _))
+
+  }
+
 }
