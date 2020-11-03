@@ -218,4 +218,16 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
 
   }
 
+  test("Find Length using fold left, exercise 3.11") {
+    assertEquals(4, List.lenUsingFoldLeft(List(1,2,3,4)))
+    assertEquals(0, List.lenUsingFoldLeft(List()))
+    assertEquals(1, List.lenUsingFoldLeft(List(0)))
+  }
+
+  test("Reverse List, exercise 3.12") {
+    assertEquals(List(4, 3, 2, 1), List.reverseList(List(1,2,3,4)))
+    assertEquals(List(3, 2, 1), List.reverseList(List(1,2,3)))
+    assertEquals(List(1), List.reverseList(List(1)))
+    assertEquals(List(), List.reverseList(List()))
+  }
 }

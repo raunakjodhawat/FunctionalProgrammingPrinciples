@@ -145,7 +145,23 @@ object List {
         case Cons(x, xs) => loop(xs, f(acc, x))
       }
     }
+
     loop(as, z)
+  }
+
+  // Exercise 3.11
+  def lenUsingFoldLeft(l: List[Int]): Int = foldLeft(l, 0)((a, _) => a + 1)
+
+  // Exercise 3.12, reverse the list
+  def reverseList[A](l: List[A]): List[A] = {
+    def loop(l1: List[A]): List[A] = {
+      l1 match {
+        case Nil => Nil
+        case _ => Cons(getTail(l1), loop(init(l1)))
+      }
+    }
+
+    loop(l)
   }
 }
 
@@ -191,8 +207,6 @@ object FunctionalDataStructure {
 
     println(l9)
     println(l10)
-    println("all done")
-
 
     val l11 = List(1, 3, 5, 11, 23)
     println(List.foldRight(l11, 0)((a, b) => a + b))
@@ -205,6 +219,8 @@ object FunctionalDataStructure {
     println(l11)
 
     println(List.LenUsingFoldRight(l11))
+
+    println(List.reverseList(l1))
   }
 
 }
