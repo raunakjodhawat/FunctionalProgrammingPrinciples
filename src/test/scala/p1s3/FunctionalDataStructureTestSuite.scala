@@ -23,7 +23,6 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
   test("Fold Right") {
     note("Find List Sum")
     assertEquals(10, List.foldRight(List(1, 2, 3, 4), 0)(_ + _))
-    assertEquals(0, List.foldRight(List(), 0)(_ + _))
     assertEquals(-10, List.foldRight(List(-1, -2, -3, -4), 0)(_ + _))
     assertEquals(4, List.foldRight(List(-1, -2, 3, 4), 0)(_ + _))
     assertEquals(Int.MaxValue, List.foldRight(List(Int.MaxValue), 0)(_ + _))
@@ -31,7 +30,6 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
 
     note("Find List Product")
     assertEquals(24, List.foldRight(List(1, 2, 3, 4), 1)(_ * _))
-    assertEquals(1, List.foldRight(List(), 1)(_ * _))
     assertEquals(24, List.foldRight(List(-1, -2, -3, -4), 1)(_ * _))
     assertEquals(-24, List.foldRight(List(1, -2, 3, 4), 1)(_ * _))
     assertEquals(Int.MaxValue, List.foldRight(List(Int.MaxValue), 1)(_ * _))
@@ -229,5 +227,20 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(List(3, 2, 1), List.reverseList(List(1,2,3)))
     assertEquals(List(1), List.reverseList(List(1)))
     assertEquals(List(), List.reverseList(List()))
+  }
+
+  test("Append using left fold. Exercise 2.14") {
+    val l1 = List(1, 2, 3, 4)
+    val l2 = List(5, 6, 7, 8)
+
+    val l3 = List.appendFoldLeft(l1, l2)
+    val l4 = List.appendFoldLeft(l2, l1)
+    val l5 = List.appendFoldLeft(l1, l1)
+
+    assertEquals(true, List.len(l3) == List.len(l4) && List.len(l3) == List.len(l5))
+    assertEquals(1, List.getHead(l3))
+    assertEquals(5, List.getHead(l4))
+    assertEquals(1, List.getHead(l5))
+
   }
 }
