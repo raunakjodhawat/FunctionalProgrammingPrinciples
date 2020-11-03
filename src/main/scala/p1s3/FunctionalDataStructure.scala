@@ -153,15 +153,9 @@ object List {
   def lenUsingFoldLeft(l: List[Int]): Int = foldLeft(l, 0)((a, _) => a + 1)
 
   // Exercise 3.12, reverse the list
-  def reverseList[A](l: List[A]): List[A] = {
-    def loop(l1: List[A]): List[A] = {
-      l1 match {
-        case Nil => Nil
-        case _ => Cons(getTail(l1), loop(init(l1)))
-      }
-    }
-
-    loop(l)
+  def reverseList[A](l: List[A]): List[A] = l match {
+    case Nil => Nil
+    case _ => Cons(getTail(l), reverseList(init(l)))
   }
 }
 
