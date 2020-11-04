@@ -195,7 +195,7 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
   }
 
   test("Find Length using fold Right, exercise 3.10") {
-    assertEquals(4, List.LenUsingFoldRight(List(1,2,3,4)))
+    assertEquals(4, List.LenUsingFoldRight(List(1, 2, 3, 4)))
     assertEquals(0, List.LenUsingFoldRight(List()))
     assertEquals(1, List.LenUsingFoldRight(List(0)))
   }
@@ -217,14 +217,14 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
   }
 
   test("Find Length using fold left, exercise 3.11") {
-    assertEquals(4, List.lenUsingFoldLeft(List(1,2,3,4)))
+    assertEquals(4, List.lenUsingFoldLeft(List(1, 2, 3, 4)))
     assertEquals(0, List.lenUsingFoldLeft(List()))
     assertEquals(1, List.lenUsingFoldLeft(List(0)))
   }
 
   test("Reverse List, exercise 3.12") {
-    assertEquals(List(4, 3, 2, 1), List.reverseList(List(1,2,3,4)))
-    assertEquals(List(3, 2, 1), List.reverseList(List(1,2,3)))
+    assertEquals(List(4, 3, 2, 1), List.reverseList(List(1, 2, 3, 4)))
+    assertEquals(List(3, 2, 1), List.reverseList(List(1, 2, 3)))
     assertEquals(List(1), List.reverseList(List(1)))
     assertEquals(List(), List.reverseList(List()))
   }
@@ -249,8 +249,8 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     val l1 = List(1, 2)
     val l2 = List(5, 6, 7)
 
-    assertEquals(2, List.getHead(List.addOne(l1)(x => x+1)))
-    assertEquals(6, List.getHead(List.addOne(l2)(x => x+1)))
+    assertEquals(2, List.getHead(List.addOne(l1)(x => x + 1)))
+    assertEquals(6, List.getHead(List.addOne(l2)(x => x + 1)))
 
   }
 
@@ -263,6 +263,26 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
 
     assertNotSame(Cons("1.2", Cons("2.0", Nil)), l1)
     assertEquals(Cons("5.3", Cons("6.0", Cons("7.0", Nil))), l2)
+
+  }
+
+  test("Map function on List. Exercise 3.18") {
+    val l1 = List(1, 2)
+
+    val l2 = List.map(l1)(x => x + 5)
+
+    assertEquals(6, List.getHead(l2))
+    assertEquals(1, List.getHead(List.map(l2)(x => x - 5)))
+
+  }
+
+  test("filter function on List. Exercise 3.19") {
+    val l1 = List(1, 2, 1, 1)
+
+    val l2 = List.filter(l1)(x => x == 1)
+
+    assertEquals(2, List.getHead(l2))
+    assertEquals(0, List.len(List.filter(l2)(x => x % 2 == 0)))
 
   }
 }

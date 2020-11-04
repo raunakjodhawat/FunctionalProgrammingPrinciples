@@ -183,6 +183,17 @@ object List {
     case Cons(x, y) => Cons(x.toString(), doubleToString(y))
     case Nil => Nil
   }
+
+  // Exercise 3.18 Map function on list
+  def map[A, B](as: List[A])(f: A => B): List[B] = as match {
+    case Cons(x, y) => Cons(f(x), map(y)(f))
+    case Nil => Nil
+  }
+
+  // Exercise 3.19
+  def filter[A](as: List[A])(f: A => Boolean): List[A] = dropWhile(as, f)
+
+
 }
 
 object FunctionalDataStructure {
@@ -193,8 +204,8 @@ object FunctionalDataStructure {
 
     println(List.doubleToString(l1))
     // println(List.addOne(l1)(x => x+1))
-//    println(List(List(1, 2, 3, 4)))
-//    println(List.concat(List(List(1, 2, 3, 4), List(5, 6, 7, 8))))
+    //    println(List(List(1, 2, 3, 4)))
+    //    println(List.concat(List(List(1, 2, 3, 4), List(5, 6, 7, 8))))
 
     // println(List.appendFoldLeft(l1, l1))
     //    println(l1)
