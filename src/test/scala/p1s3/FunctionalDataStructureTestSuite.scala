@@ -229,7 +229,7 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(List(), List.reverseList(List()))
   }
 
-  test("Append using left fold. Exercise 2.14") {
+  test("Append using left fold. Exercise 3.14") {
     val l1 = List(1, 2, 3, 4)
     val l2 = List(5, 6, 7, 8)
 
@@ -241,6 +241,16 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(1, List.getHead(l3))
     assertEquals(5, List.getHead(l4))
     assertEquals(1, List.getHead(l5))
+
+  }
+
+
+  test("Add one to each element. Exercise 3.16") {
+    val l1 = List(1, 2)
+    val l2 = List(5, 6, 7)
+
+    assertEquals(2, List.getHead(List.addOne(l1)(x => x+1)))
+    assertEquals(6, List.getHead(List.addOne(l2)(x => x+1)))
 
   }
 }
