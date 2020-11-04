@@ -177,15 +177,22 @@ object List {
     case Cons(x, y) => Cons(f(x), addOne(y)(f))
     case Nil => Nil
   }
+
+  // Exercise 3.17 convert each double value to string
+  def doubleToString(l: List[Double]): List[String] = l match {
+    case Cons(x, y) => Cons(x.toString(), doubleToString(y))
+    case Nil => Nil
+  }
 }
 
 object FunctionalDataStructure {
 
   def main(args: Array[String]): Unit = {
 
-    val l1 = List(1, 2, 3, 4)
+    val l1 = List(1.0, 2.2, 3.2, 4.2)
 
-    println(List.addOne(l1)(x => x+1))
+    println(List.doubleToString(l1))
+    // println(List.addOne(l1)(x => x+1))
 //    println(List(List(1, 2, 3, 4)))
 //    println(List.concat(List(List(1, 2, 3, 4), List(5, 6, 7, 8))))
 

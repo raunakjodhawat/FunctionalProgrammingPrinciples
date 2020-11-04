@@ -1,6 +1,6 @@
 package p1s3
 
-import org.junit.Assert.assertEquals
+import org.junit.Assert.{assertEquals, assertNotSame}
 import org.scalatest.funsuite.AnyFunSuite
 
 class FunctionalDataStructureTestSuite extends AnyFunSuite {
@@ -251,6 +251,18 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
 
     assertEquals(2, List.getHead(List.addOne(l1)(x => x+1)))
     assertEquals(6, List.getHead(List.addOne(l2)(x => x+1)))
+
+  }
+
+  test("Convert List of double to List of String. Exercise 3.17") {
+    val l1 = List(1.2, 2)
+    val l2 = List(5.3, 6, 7)
+
+    assertEquals(Cons("1.2", Cons("2.0", Nil)), List.doubleToString(l1))
+    assertEquals(Cons("5.3", Cons("6.0", Cons("7.0", Nil))), List.doubleToString(l2))
+
+    assertNotSame(Cons("1.2", Cons("2.0", Nil)), l1)
+    assertEquals(Cons("5.3", Cons("6.0", Cons("7.0", Nil))), l2)
 
   }
 }
