@@ -168,6 +168,11 @@ object List {
   def appendFoldLeft[A](l1: List[A], l2: List[A]): List[A] =
     foldRight(l1, l2)(Cons(_, _))
 
+  // Exercise 3.14 concat list
+  def concat[A](l: List[List[A]]): List[A] =
+    foldLeft(l, Nil: List[A])(append)
+
+  //
 }
 
 object FunctionalDataStructure {
@@ -175,7 +180,10 @@ object FunctionalDataStructure {
   def main(args: Array[String]): Unit = {
 
     val l1 = List(1, 2, 3, 4)
-    println(List.appendFoldLeft(l1, l1))
+    println(List(List(1, 2, 3, 4)))
+    println(List.concat(List(List(1, 2, 3, 4), List(5, 6, 7, 8))))
+
+    // println(List.appendFoldLeft(l1, l1))
     //    println(l1)
     //    val l2 = List.removeFirst(l1)
     //    println(l2)
