@@ -193,7 +193,11 @@ object List {
   // Exercise 3.19
   def filter[A](as: List[A])(f: A => Boolean): List[A] = dropWhile(as, f)
 
-
+  // Exercise 3.20
+  def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = as match {
+    case Cons(x, y) => append(f(x), flatMap(y)(f))
+    case Nil => Nil: List[B]
+  }
 }
 
 object FunctionalDataStructure {
@@ -202,7 +206,8 @@ object FunctionalDataStructure {
 
     val l1 = List(1.0, 2.2, 3.2, 4.2)
 
-    println(List.doubleToString(l1))
+    println(List.flatMap(l1)(i => List(i, i, i)))
+    // println(List.doubleToString(l1))
     // println(List.addOne(l1)(x => x+1))
     //    println(List(List(1, 2, 3, 4)))
     //    println(List.concat(List(List(1, 2, 3, 4), List(5, 6, 7, 8))))
