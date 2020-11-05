@@ -296,4 +296,12 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(4, List.len(List.flatMap(l1)(i => List(i))))
 
   }
+
+  test("Filter using flat map. Exercise 3.21") {
+    val l1 = List(1, 2, 1, 1)
+
+    assertEquals(1, List.len(List.filterUsingFlatMap(l1)(x => x == 1)))
+    assertEquals(3, List.len(List.filterUsingFlatMap(l1)(x => x == 2)))
+    assertEquals(4, List.len(List.filterUsingFlatMap(l1)(x => x == 4)))
+  }
 }
