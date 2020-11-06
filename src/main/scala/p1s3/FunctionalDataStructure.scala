@@ -203,10 +203,10 @@ object List {
   def filterUsingFlatMap[A](as: List[A])(f: A => Boolean): List[A] =
     flatMap(as)(a => if (!f(a)) List(a) else Nil)
 
-//  as match {
-//    case Cons(x, y) => Cons(x, filter(filterUsingFlatMap(as)(f))(f))
-//    case Nil => Nil
-//  }
+  // Exercise 3.22/3.23
+  def zipWith[A](l1: List[A])(l2: List[A])(f:(A, A) => A): List[A] = l1 match {
+    case Cons(x, y) => Cons(f(x, l2), zipWith(y)(l2)(f))
+  }
 }
 
 object FunctionalDataStructure {
@@ -215,6 +215,8 @@ object FunctionalDataStructure {
 
     val l1 = List(1, 2, 1, 1)
 
+    val l2 = List(4, 5, 6, 7)
+    println(List.operateList(l1)(l2)(_+_))
     println(List.filterUsingFlatMap(l1)(x => x == 2))
 //    println(List.flatMap(l1)(i => List(i, i, i)))
 //
