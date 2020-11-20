@@ -203,10 +203,6 @@ object List {
   def filterUsingFlatMap[A](as: List[A])(f: A => Boolean): List[A] =
     flatMap(as)(a => if (!f(a)) List(a) else Nil)
 
-  // Exercise 3.22/3.23
-  def zipWith[A](l1: List[A])(l2: List[A])(f:(A, A) => A): List[A] = l1 match {
-    case Cons(x, y) => Cons(f(x, l2), zipWith(y)(l2)(f))
-  }
 }
 
 object FunctionalDataStructure {
@@ -215,68 +211,67 @@ object FunctionalDataStructure {
 
     val l1 = List(1, 2, 1, 1)
 
-    val l2 = List(4, 5, 6, 7)
-    println(List.operateList(l1)(l2)(_+_))
+    val l29 = List(4, 5, 6, 7)
     println(List.filterUsingFlatMap(l1)(x => x == 2))
-//    println(List.flatMap(l1)(i => List(i, i, i)))
-//
-//    println(List.addOne(l1)(x => x + 1))
-//    println(List(List(1, 2, 3, 4)))
-//    println(List.concat(List(List(1, 2, 3, 4), List(5, 6, 7, 8))))
-//
-//    println(List.appendFoldLeft(l1, l1))
-//    println(l1)
-//    val l2 = List.removeFirst(l1)
-//    println(l2)
-//    println(l1)
-//
-//    val l3 = List.changeHead(l2, 30)
-//
-//    println(l3)
-//    println(l2)
-//
-//    val l4 = List.addAtFront(l3, 100)
-//
-//    println(l4)
-//    println(l3)
-//
-//    println(List.drop(l3, 2))
-//    println(List.drop(l3, 0))
-//    println(List.drop(l3, 3))
-//
-//
-//    val l5 = List(10, 12, 15, 20, 22, 32, 42, 52, 60)
-//
-//    println(l5)
-//    val l6 = List.dropWhile(l5, (a: Int) => a % 5 == 0)
-//    println(l6)
-//
-//    val l7 = List.append(l5, l6)
-//    println(l7)
-//
-//    val l8 = List.init(l7)
-//    println(l8)
-//
-//    val l9 = List.dropWhile(l6, (a: Int) => a % 5 == 0)
-//    val l10 = List.dropWhileContinousMismatch(l6)(a => a % 5 == 0)
-//
-//    println(l9)
-//    println(l10)
-//
-//    val l11 = List(1, 3, 5, 11, 23)
-//    println(List.foldRight(l11, 0)((a, b) => a + b))
-//    // Exercise 3.7 (Will not work)
-//    println(List.foldRight(l11, 1)((a, b) => if (a == 0 | b == 0) 0 else a * b))
-//
-//    println(List.foldRight(l11, 0)((a, b) => a + b) == List.foldLeftFromFoldRight(l11, 0)((a, b) => a + b))
-//    println(List.foldRight(l11, 0)(_ + _))
-//    println(List.foldRight(l11, 1)(_ * _))
-//
-//    println(l11)
-//
-//    println(List.LenUsingFoldRight(l11))
-//
-//    println(List.reverseList(l1))
+    println(List.flatMap(l1)(i => List(i, i, i)))
+
+    println(List.addOne(l1)(x => x + 1))
+    println(List(List(1, 2, 3, 4)))
+    println(List.concat(List(List(1, 2, 3, 4), List(5, 6, 7, 8))))
+
+    println(List.appendFoldLeft(l1, l1))
+    println(l1)
+    val l2 = List.removeFirst(l1)
+    println(l2)
+    println(l1)
+
+    val l3 = List.changeHead(l2, 30)
+
+    println(l3)
+    println(l2)
+
+    val l4 = List.addAtFront(l3, 100)
+
+    println(l4)
+    println(l3)
+
+    println(List.drop(l3, 2))
+    println(List.drop(l3, 0))
+    println(List.drop(l3, 3))
+
+
+    val l5 = List(10, 12, 15, 20, 22, 32, 42, 52, 60)
+
+    println(l5)
+    val l6 = List.dropWhile(l5, (a: Int) => a % 5 == 0)
+    println(l6)
+
+    val l7 = List.append(l5, l6)
+    println(l7)
+
+    val l8 = List.init(l7)
+    println(l8)
+
+    val l9 = List.dropWhile(l6, (a: Int) => a % 5 == 0)
+    val l10 = List.dropWhileContinousMismatch(l6)(a => a % 5 == 0)
+
+    println(l9)
+    println(l10)
+
+    val l11 = List(1, 3, 5, 11, 23)
+    println(List.foldRight(l11, 0)((a, b) => a + b))
+    // Exercise 3.7 (Will not work)
+    println(List.foldRight(l11, 1)((a, b) => if (a == 0 | b == 0) 0 else a * b))
+
+    println(List.foldRight(l11, 0)((a, b) => a + b) == List.foldLeftFromFoldRight(l11, 0)((a, b) => a + b))
+    println(List.foldRight(l11, 0)(_ + _))
+    println(List.foldRight(l11, 1)(_ * _))
+
+    println(l11)
+
+    println(List.LenUsingFoldRight(l11))
+
+    println(List.reverseList(l1))
   }
 
 }

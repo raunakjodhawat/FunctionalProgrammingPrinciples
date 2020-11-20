@@ -262,7 +262,7 @@ class FunctionalDataStructureTestSuite extends AnyFunSuite {
     assertEquals(Cons("5.3", Cons("6.0", Cons("7.0", Nil))), List.doubleToString(l2))
 
     assertNotSame(Cons("1.2", Cons("2.0", Nil)), l1)
-    assertEquals(Cons("5.3", Cons("6.0", Cons("7.0", Nil))), l2)
+    assertEquals(Cons("5.3", Cons("6.0", Cons("7.0", Nil))), List.doubleToString(l2))
 
   }
 
